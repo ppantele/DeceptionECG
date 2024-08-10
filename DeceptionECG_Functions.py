@@ -526,7 +526,7 @@ GAN_model.train(epochs=1000, batch_size=64,
 
 
 
-def DeceptionECG_SignalPlot(input, signal_n, fs=100, channel_names=['I', 'II', 'III', 'AVR', 'AVL', 'AVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']):
+def DeceptionECG_SamplePlot(input, signal_n, fs=100, channel_names=['I', 'II', 'III', 'AVR', 'AVL', 'AVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']):
   channels_n = input.shape[1]
   for i in range(channels_n):
     plt.plot(input[signal_n, i, :])
