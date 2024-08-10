@@ -536,3 +536,14 @@ def DeceptionECG_SignalPlot(input, signal_n, fs=100, channel_names=['I', 'II', '
       plt.text(0.9, 0.9, text, transform=plt.gca().transAxes, verticalalignment='top', horizontalalignment='right', bbox=box_props)
     plt.show()
   return None
+
+def DeceptionECG_LeadPlot(input, channel=2, n_signal=10, channel_name=['II'], fs=100):
+  channel -= 1 # So that channel 2, becomes 1 and corresponds to lead II (0, 1, 2) (similary 1 >> I, 12 >> V6)
+  for i in range(n_signal):
+    plt.plot(input[i, channel, :])
+    if (channel_name!=None):
+      text = 'Sample: ' + str(i+1) + ' (Lead: ' + str(channel_name) + ')'
+      box_props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+      plt.text(0.9, 0.9, text, transform=plt.gca().transAxes, verticalalignment='top', horizontalalignment='right', bbox=box_props)
+    plt.show()
+  return None
