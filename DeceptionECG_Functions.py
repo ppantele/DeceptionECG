@@ -1,4 +1,3 @@
-!pip -q install deepfake-ecg
 import deepfakeecg
 import numpy as np
 import os
