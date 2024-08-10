@@ -1,3 +1,6 @@
+import subprocess
+subprocess.run(["pip", "install", "deepfake-ecg"])
+
 import deepfakeecg
 import numpy as np
 import os
