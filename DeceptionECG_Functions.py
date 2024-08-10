@@ -12,11 +12,6 @@ from datetime import datetime
 
 def DeceptionECG_GenPurp(n):
 
-  !pip -q install deepfake-ecg
-  import deepfakeecg
-  import numpy as np
-  import os
-
   deepfakeecg.generate(n, ".", start_id=0, run_device="cpu")
 
   signal_matrix = np.zeros((n, 12, 1000))
