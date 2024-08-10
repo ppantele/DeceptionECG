@@ -521,3 +521,18 @@ GAN_model.train(epochs=1000, batch_size=64,
 #   return X_latent 
 # X_latent of shape (n_samples, length, channels), e.g.: (100, 1000, 12)
 '''
+
+
+
+
+
+def DeceptionECG_SignalPlot(input, signal_n, fs=100, channel_names=['I', 'II', 'III', 'AVR', 'AVL', 'AVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']):
+  channels_n = input.shape[1]
+  for i in range(channels_n):
+    plt.plot(input[signal_n, i, :])
+    if (channel_names!=None):
+      text = 'Lead: ' + channel_names[i]
+      box_props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+      plt.text(0.9, 0.9, text, transform=plt.gca().transAxes, verticalalignment='top', horizontalalignment='right', bbox=box_props)
+    plt.show()
+  return None
