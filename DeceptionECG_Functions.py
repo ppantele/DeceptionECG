@@ -1,9 +1,102 @@
+!pip -q install deepfake-ecg
+import deepfakeecg
+import numpy as np
+import os
 from tensorflow.keras import models, layers
 from tensorflow.keras.optimizers import Adam
 import numpy as np
 import matplotlib.pyplot as plt
 import csv, random, os
 from datetime import datetime
+
+
+
+def DeceptionECG_GenPurp(n):
+
+  !pip -q install deepfake-ecg
+  import deepfakeecg
+  import numpy as np
+  import os
+
+  deepfakeecg.generate(n, ".", start_id=0, run_device="cpu")
+
+  signal_matrix = np.zeros((n, 12, 1000))
+
+  
+  for sample in range(n):
+  
+    with open(str(sample)+'.asc', 'r') as file:
+      content = file.read()
+    lines = content.strip().split('\n')
+    data = []
+    for line in lines:
+      numbers = [int(x) for x in line.split()]
+      data.append(numbers)
+    sample_matrix = np.array(data).T[:,::5]
+
+    I = sample_matrix[0,:]
+    II = sample_matrix[1,:]
+    V1 = sample_matrix[2,:]
+    V2 = sample_matrix[3,:]
+    V3 = sample_matrix[4,:]
+    V4 = sample_matrix[5,:]
+    V5 = sample_matrix[6,:]
+    V6 = sample_matrix[7,:]
+    III = II - I
+    aVR = -0.5*(I + II)
+    aVL = I - 0.5 * II
+    aVF = II - 0.5 * I
+    channels = [I, II, III, aVR, aVL, aVF, V1, V2, V3, V4, V5, V6]
+    for channel in range(len(channels)):
+      signal_matrix[sample,channel,:] = channels[channel]
+
+  signal_matrix = (signal_matrix - np.mean(signal_matrix)) / np.std(signal_matrix) # standardize
+
+  for sample in range(n):
+    os.remove(str(sample)+'.asc')
+
+  return signal_matrix
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class Model:
