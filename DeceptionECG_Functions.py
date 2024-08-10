@@ -69,6 +69,8 @@ def DeceptionECG_GenPurp(n):
 
 
 
+def DeceptionECG_DiseaseSpec(input, disease):
+  return 1
 
 
 
