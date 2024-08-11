@@ -531,7 +531,7 @@ def DeceptionECG_SamplePlot(input, signal_n, fs=100, channel_names=['I', 'II', '
   signal_n -= 1  # So that the first input signal (1st, signal_n: 1), becomes: 0 index 
   channels_n = input.shape[1] 
   for i in range(channels_n):
-    plt.figure(figsize=(10, 2))
+    plt.figure(figsize=(10, 1))
     plt.plot(input[signal_n, i, :])
     if channel_names is not None:
       text = 'Lead: ' + channel_names[i]
@@ -546,7 +546,7 @@ def DeceptionECG_SamplePlot(input, signal_n, fs=100, channel_names=['I', 'II', '
 def DeceptionECG_LeadPlot(input, channel=2, n_signal=10, channel_name='II', fs=100):
   channel -= 1 # So that channel 2, becomes 1 and corresponds to lead II (0, 1, 2) (similary 1 >> I, 12 >> V6)
   for i in range(n_signal):
-    plt.figure(figsize=(10, 2))
+    plt.figure(figsize=(10, 1))
     plt.plot(input[i, channel, :])
     if (channel_name!=None):
       text = 'Sample: ' + str(i+1) + ' (Lead: ' + str(channel_name) + ')'
