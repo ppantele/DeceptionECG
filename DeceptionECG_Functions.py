@@ -545,12 +545,12 @@ def DeceptionECG_SamplePlot(input, signal_n, fs=100, channel_names=['I', 'II', '
 
 def DeceptionECG_LeadPlot(input, channel=2, n_signal=10, fs=100):
   channel -= 1 # So that channel 2, becomes 1 and corresponds to lead II (0, 1, 2) (similary 1 >> I, 12 >> V6)
+  channel_names = ['I', 'II', 'III', 'aVR', 'aVL', 'aVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']
+  channel_name = channel_names[channel]
   for i in range(n_signal):
     plt.figure(figsize=(10, 1))
     plt.plot(input[i, channel, :])
-    channel_names = ['I', 'II', 'III', 'aVR', 'aVL', 'aVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']
-    channel_name = channel_names[channel]
-    text = 'Sample: ' + str(i+1) + ' (Lead: ' + str(channel_name) + ')'
+    text = 'Sample: ' + str(i+1) + ' (Lead: ' + channel_name + ')'
     box_props = dict(boxstyle='round', facecolor='white', alpha=0.5)
     plt.text(0.9, 0.9, text, transform=plt.gca().transAxes, verticalalignment='top', horizontalalignment='right', bbox=box_props)
     plt.show()
