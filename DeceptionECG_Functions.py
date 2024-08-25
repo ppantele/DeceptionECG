@@ -527,7 +527,7 @@ GAN_model.train(epochs=1000, batch_size=64,
 
 
 
-def DeceptionECG_SamplePlot(input, signal_n, fs=100, channel_names=['I', 'II', 'III', 'AVR', 'AVL', 'AVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']):
+def DeceptionECG_SamplePlot(input, signal_n, fs=100, channel_names=['I', 'II', 'III', 'aVR', 'aVL', 'aVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']):
   signal_n -= 1  # So that the first input signal (1st, signal_n: 1), becomes: 0 index 
   channels_n = input.shape[1] 
   for i in range(channels_n):
@@ -548,11 +548,11 @@ def DeceptionECG_LeadPlot(input, channel=2, n_signal=10, fs=100):
   for i in range(n_signal):
     plt.figure(figsize=(10, 1))
     plt.plot(input[i, channel, :])
-    channels = ['I', 'II', 'III', 'aVR', 'aVL', 'aVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']
-    channel_name = channels[channel]
-      text = 'Sample: ' + str(i+1) + ' (Lead: ' + str(channel_name) + ')'
-      box_props = dict(boxstyle='round', facecolor='white', alpha=0.5)
-      plt.text(0.9, 0.9, text, transform=plt.gca().transAxes, verticalalignment='top', horizontalalignment='right', bbox=box_props)
+    channel_names = ['I', 'II', 'III', 'aVR', 'aVL', 'aVF', 'V1', 'V2', 'V3', 'V4', 'V5', 'V6']
+    channel_name = channel_names[channel]
+    text = 'Sample: ' + str(i+1) + ' (Lead: ' + str(channel_name) + ')'
+    box_props = dict(boxstyle='round', facecolor='white', alpha=0.5)
+    plt.text(0.9, 0.9, text, transform=plt.gca().transAxes, verticalalignment='top', horizontalalignment='right', bbox=box_props)
     plt.show()
   return None
 
