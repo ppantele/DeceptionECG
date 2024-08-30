@@ -15,21 +15,19 @@ from datetime import datetime
 
 def DeceptionECG_GenPurp(n):
 
-    """
-    Generate synthetic, random ECG signals and preprocess them into a standardized format.
+  """
+  Generate synthetic, random ECG signals and preprocess them into a standardized format.
 
-    Parameters:
-    - n (int): The number of synthetic ECG signals to generate.
+  Parameters:
+  - n (int): The number of synthetic ECG signals to generate.
 
-    Returns:
-    - signal_matrix (np.ndarray): A NumPy array of shape (n, 12, 1000) containing the 
-      standardized 12-lead ECG signals. Each signal has 12 channels (leads) and 1000 data points.
-    """
-
-  deepfakeecg.generate(n, ".", start_id=0, run_device="cpu")
-
-  signal_matrix = np.zeros((n, 12, 1000))
+  Returns:
+  - signal_matrix (np.ndarray): A NumPy array of shape (n, 12, 1000) containing the 
+  standardized 12-lead ECG signals. Each signal has 12 channels (leads) and 1000 data points.
+  """
   
+  signal_matrix = np.zeros((n, 12, 1000))
+  deepfakeecg.generate(n, ".", start_id=0, run_device="cpu")
   for sample in range(n):
   
     with open(str(sample)+'.asc', 'r') as file:
